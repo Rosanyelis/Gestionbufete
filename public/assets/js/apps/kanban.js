@@ -16,7 +16,7 @@
     var kanban = new jKanban({
       element: '#kanban',
       gutter: '0',
-      widthBoard: '320px',
+      widthBoard: '250px',
       responsivePercentage: false,
       boards: [{
         'id': '_open',

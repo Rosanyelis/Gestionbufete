@@ -12,27 +12,30 @@
                         <div class="row gx-4 gy-3">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="event-title">Paciente</label>
+                                    <label class="form-label" for="event-title">Clientes</label>
                                     <div class="form-control-wrap">
-                                        <select id="patient_id" class="form-select" data-search="on">
+                                        <select id="client_id" class="form-select" data-search="on">
                                             <option value="Seleccione">Seleccione..</option>
-                                            @foreach ($patients as $item)
-                                            <option value="{{ $item->id }}">{{ $item->dni }} - {{ $item->firstname }} {{ $item->lastname }} {{ $item->second_surname }}</option>
+                                            @foreach ($clients as $item)
+                                            <option value="{{ $item->id }}">{{ $item->firstname }} {{ $item->lastname }} {{ $item->second_surname }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label class="form-label">Motivo de Cita</label>
+                                    <label class="form-label" for="event-title">Asunto</label>
                                     <div class="form-control-wrap">
-                                        <select id="event-theme" class="select-calendar-theme form-control" data-search="on">
-                                            @foreach ($reason as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" id="event-title" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="event-title">Descripción</label>
+                                    <div class="form-control-wrap">
+                                        <textarea id="event-description" class="form-control" required></textarea>
                                     </div>
                                 </div>
                             </div>

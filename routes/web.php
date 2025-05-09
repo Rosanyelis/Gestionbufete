@@ -6,6 +6,7 @@ use App\Http\Controllers\NotaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\KambanController;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ClienteController;
@@ -42,6 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    # Citas
+    Route::get('/citasAjax', [AppointmentController::class, 'appointmentJson'])->name('appointment.appointmentJson');
+    Route::get('/citas', [AppointmentController::class, 'index'])->name('appointment.index');
+    Route::post('/citas/agendar-cita', [AppointmentController::class, 'storeAjax'])->name('appointment.store');
+    Route::post('/citas/{id}/eliminar-cita', [AppointmentController::class, 'destroy'])->name('appointment.destroy');
 
     # Usuarios
     Route::get('/usuarios', [UserController::class, 'index'])->name('user.index');
@@ -86,13 +92,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/clientes/{id}/eliminar-cliente', [ClienteController::class, 'destroy'])->name('cliente.destroy');
 
     #Gestiones
-    Route::get('/gestiones', [ManagementController::class, 'index'])->name('gestion.index');
-    Route::get('/gestiones/agregar-gestion', [ManagementController::class, 'create'])->name('gestion.create');
-    Route::post('/gestiones/guardar-gestion', [ManagementController::class, 'store'])->name('gestion.store');
-    Route::get('/gestiones/{id}/ver-gestion', [ManagementController::class, 'show'])->name('gestion.show');
-    Route::get('/gestiones/{id}/editar-gestion', [ManagementController::class, 'edit'])->name('gestion.edit');
-    Route::put('/gestiones/{id}/actualizar-gestion', [ManagementController::class, 'update'])->name('gestion.update');
-    Route::post('/gestiones/{id}/cambiar-estado-de-gestion', [ManagementController::class, 'changeStatus'])->name('gestion.changestatus');
+    Route::get('/gestiones', [KambanController::class, 'index'])->name('gestion.index');
+    Route::get('/kambanJson', [KambanController::class, 'kambanJson'])->name('gestion.kambanJson');
+    Route::get('/gestiones/agregar-gestion', [KambanController::class, 'create'])->name('gestion.create');
+    Route::post('/gestiones/guardar-gestion', [KambanController::class, 'store'])->name('gestion.store');
+    Route::get('/gestiones/{id}/ver-gestion', [KambanController::class, 'show'])->name('gestion.show');
+    Route::get('/gestiones/{id}/editar-gestion', [KambanController::class, 'edit'])->name('gestion.edit');
+    Route::put('/gestiones/{id}/actualizar-gestion', [KambanController::class, 'update'])->name('gestion.update');
+    Route::post('/gestiones/{id}/eliminar-gestion', [KambanController::class, 'destroy'])->name('gestion.destroy');
+    Route::post('/gestiones/{id}/cambiar-estado-de-gestion', [KambanController::class, 'changeStatus'])->name('gestion.changestatus');
 
     #Notas
     Route::post('/notas/{id}/guardar-nota', [NotaController::class, 'store'])->name('nota.store');

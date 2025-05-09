@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KambanClientBoard;
+use App\Models\Client;
+use App\Models\Kamban;
 use Illuminate\Http\Request;
 
-class KambanClientBoardController extends Controller
+class KambanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = Kamban::all();
+        return view('gestiones.index', compact('data'));
+    }
+
+    public function kambanJson()
+    {
+        $data = Kamban::with('boards', 'user', 'client', 'boards.boardTasks')->get();
+        return response()->json($data);
     }
 
     /**
@@ -20,7 +28,8 @@ class KambanClientBoardController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Client::all();
+        return view('gestiones.create', compact('clientes'));
     }
 
     /**
@@ -34,15 +43,16 @@ class KambanClientBoardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(KambanClientBoard $kambanClientBoard)
+    public function show(string $id)
     {
-        //
+        $data = Kamban::find($id);
+        return view('gestiones.show', compact('data'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(KambanClientBoard $kambanClientBoard)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +60,7 @@ class KambanClientBoardController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KambanClientBoard $kambanClientBoard)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +68,7 @@ class KambanClientBoardController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(KambanClientBoard $kambanClientBoard)
+    public function destroy(string $id)
     {
         //
     }

@@ -14,7 +14,7 @@
                                 </a>
                             </li><!-- .nk-menu-item -->
                             <li class="nk-menu-item ">
-                                <a href="{{ route('cliente.index') }}" class="nk-menu-link">
+                                <a href="{{ route('appointment.index') }}" class="nk-menu-link">
                                     <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
                                     <span class="nk-menu-text">Calendario</span>
                                 </a>

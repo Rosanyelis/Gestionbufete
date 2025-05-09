@@ -27,9 +27,6 @@
                             <button data-dismiss="modal" data-toggle="modal"
                                 data-target="#deleteEventPopup" class="btn btn-danger btn-dim">Borrar Cita</button>
                         </li>
-                        <li>
-                            <button id="CreateHistory" class="btn btn-primary">Generar Historia</button>
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -19,21 +19,11 @@ class DatabaseSeeder extends Seeder
             JuzgadoSeeder::class,
             MateriaSeeder::class,
             MedioContactoSeeder::class,
+            UserSeeder::class,
+            KambanSeeder::class,
         ]);
 
-        $dev = User::create([
-            'name' => 'Desarrolladora',
-            'email' => 'rosanyelismendoza@gmail.com',
-            'password' => Hash::make('admin'), // password
-        ]);
-        $dev->assignRole('Desarrollador');
 
-        $administrador = User::create([
-            'name' => 'Administrador',
-            'email' => 'administrador@example.com',
-            'password' => Hash::make('admin'), // password
-        ]);
-        $administrador->assignRole('Administrador');
 
     }
 }

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('client_boards', function (Blueprint $table) {
+        Schema::create('board_task_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kamban_client_id')->references('id')->on('kamban_clients')->onDelete('cascade');
+            $table->foreignId('board_task_id')->references('id')->on('board_tasks')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->text('title');
+            $table->text('url_file');
+            $table->text('name_file');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('client_boards');
+        Schema::dropIfExists('board_task_files');
     }
 };

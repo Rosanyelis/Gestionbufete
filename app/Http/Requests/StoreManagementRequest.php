@@ -11,7 +11,7 @@ class StoreManagementRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,25 @@ class StoreManagementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'client_id' => ['required', 'integer'],
+            'task' => ['required', 'string'],
+            'fecha' => ['required', 'date'],
+            'hora' => ['required', 'string'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'client_id.required' => 'El campo Cliente es obligatorio.',
+            'task.required' => 'El campo Descripción de Gestión es obligatorio.',
+            'fecha.required' => 'El campo Fecha es obligatorio.',
+            'hora.required' => 'El campo Hora es obligatorio.',
         ];
     }
 }

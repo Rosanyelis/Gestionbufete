@@ -78,7 +78,6 @@
                 var addEventPopup = $('#addEventPopup');
                 var previewEventPopup = $('#previewEventPopup');
                 var deleteEventBtn = $('#deleteEvent');
-                var createHistory = $('#CreateHistory');
                 var mobileView = NioApp.Win.width < NioApp.Break.md ? true : false;
 
 
@@ -139,7 +138,7 @@
                         var className = info.event._def.ui.classNames[0].slice(3);
 
                         var eventId = info.event._def.publicId; //Set data in eidt form
-                        var patientId = info.event._def.extendedProps.patient_id;
+                        var clientId = info.event._def.extendedProps.client_id;
 
                         $('#edit-event-title').val(title);
                         $('#edit-event-start-date').val(startDate).datepicker('update');
@@ -150,7 +149,6 @@
                         $('#edit-event-theme').val(className);
                         $('#edit-event-theme').trigger('change.select2');
                         deleteEventBtn.attr('data-id', eventId); // Set data in preview
-                        createHistory.attr('data-id', patientId); // Set data in preview
 
                         var previewStart = String(start.getDate()).padStart(2, '0') + ' ' + month[start.getMonth()] + ' ' + start.getFullYear() + (startTime ? ' - ' + to12(startTime) : '');
                         var previewEnd = String(end.getDate()).padStart(2, '0') + ' ' + month[end.getMonth()] + ' ' + end.getFullYear() + (endTime ? ' - ' + to12(endTime) : '');
@@ -171,9 +169,11 @@
                 addEventBtn.on("click", function (e) {
                     e.preventDefault();
                     // tomamos los datos del formulario
-                    var eventTheme = $('#event-theme').val();
-                    // id del paciente y del doctor
-                    var patientId = $('#patient_id').val();
+                    var eventTitle = $('#event-title').val();
+                    // id del cliente
+                    var clientId = $('#client_id').val();
+                    // descripcion del evento
+                    var eventDescription = $('#event-description').val();
                     // fecha de inicio y fin del evento
                     var eventStartDate = $('#event-start-date').val();
                     // hora de inicio y fin de cita
@@ -189,16 +189,17 @@
                         url: "{{ route('appointment.store') }}",
                         type: 'POST',
                         data: {
-                            reason_treatment_id: eventTheme,
+                            title: eventTitle,
+                            description: eventDescription,
                             start: start,
                             end: end,
-                            patient_id: patientId,
+                            client_id: clientId,
                         },
                         success: function (data) {
                             Swal.fire({
                                 position: 'top-center',
                                 icon: 'success',
-                                title: 'Cita Agendada Correctamente',
+                                title: 'Evento Agendado Correctamente',
                                 showConfirmButton: false,
                                 timer: 2500
                             });
@@ -221,7 +222,7 @@
                             Swal.fire({
                                 position: 'top-center',
                                 icon: 'success',
-                                title: 'Cita Eliminada Correctamente',
+                                title: 'Evento Eliminado Correctamente',
                                 showConfirmButton: false,
                                 timer: 4500
                             });
@@ -230,12 +231,6 @@
                             location.reload();
                         }
                     });
-                });
-                createHistory.on("click", function (e) {
-                    e.preventDefault();
-                    var dataId = createHistory.attr('data-id');
-                    var urlredirect = "{{ url('') }}";
-                    window.location.href = urlredirect + '/pacientes/'+dataId+'/crear-historia-dental'
                 });
                 function desfragmentarSumarHora(horaString) {
                     // Desfragmentar la hora en un array

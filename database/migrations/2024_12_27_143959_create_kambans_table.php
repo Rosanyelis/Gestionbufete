@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kamban_clients', function (Blueprint $table) {
+        Schema::create('kambans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreignId('client_id')->nullable()->references('id')->on('clients')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('title');
+            $table->text('description')->nullable();
+            $table->enum('status', ['Activo', 'Archivado'])->default('Activo');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kamban_clients');
+        Schema::dropIfExists('kambans');
     }
 };

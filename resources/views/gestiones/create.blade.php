@@ -20,9 +20,8 @@
                                 </div><!-- .nk-block-head -->
                                 <div class="card card-preview">
                                     <div class="card-inner">
-                                        <form class="row gy-2 form-validate" action="{{ route('cliente.store') }}" method="POST">
+                                        <form class="row gy-2 form-validate" action="{{ route('gestion.store') }}" method="POST">
                                             @csrf
-
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label class="form-label" for="name">Clientes</label>

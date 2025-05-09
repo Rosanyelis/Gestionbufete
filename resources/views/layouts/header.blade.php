@@ -2,14 +2,11 @@
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
                             <div class="nk-menu-trigger d-xl-none ml-n1">
-                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
-                            </div>
-                            <div class="nk-header-brand d-xl-none">
-                                <a href="{{ route('dashboard') }}" class="logo-link">
-                                    <img class="logo-light logo-img" src="{{ asset('images/textologo.png') }}" alt="logo">
-                                    <img class="logo-dark logo-img" src="{{ asset('images/textologo.png') }}" alt="logo-dark">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
+                                    <em class="icon ni ni-menu"></em>
                                 </a>
-                            </div><!-- .nk-header-brand -->
+                            </div>
+                           
                             <div class="nk-header-search ml-3 ml-xl-0">
                                 <h4><span id="DateToday"></span></h4>
                             </div><!-- .nk-header-news -->

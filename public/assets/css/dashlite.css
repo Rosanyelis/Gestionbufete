@@ -10781,7 +10781,7 @@ body.nav-shown { overflow: hidden; }
 
 .nk-sidebar-bar .dropdown-menu .sub-text, .nk-sidebar-bar .dropdown-menu .overline-title, .nk-sidebar-bar .dropdown-menu .overline-title-alt { color: #8094ae; }
 
-.nk-sidebar-main { flex-grow: 1; width: 259px; background: #f5f6fa; border-right: 1px solid #e5e9f2; }
+.nk-sidebar-main { flex-grow: 1; width: 245px; background: #f5f6fa; border-right: 1px solid #e5e9f2; }
 
 .nk-sidebar-main.is-light { background: #fff; border-right-color: #ebeef2; }
 
